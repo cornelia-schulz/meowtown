@@ -1,9 +1,11 @@
-var path = require('path')
+const path = require('path')
 
-var express = require('express')
-var hbs = require('express-handlebars')
+const express = require('express')
+const hbs = require('express-handlebars')
 
-var server = express()
+const server = express()
+
+const getJsonData = require('./handleJSON').getDataFromJson
 
 // view engine config
 
@@ -19,31 +21,6 @@ server.set('view engine', 'hbs')
 server.use(express.urlencoded({ extended: false }))
 server.use(express.static(path.join(__dirname, 'public')))
 
-// sample data
-
-var data = {
-  cats: [
-    {
-      id: 1, 
-      name: 'fluffy',
-      colour: 'brown',
-      tails: 1,
-      paws: 4,
-      loves: 'mice',
-      hates: 'rain'
-    },
-    {
-      id: 2, 
-      name: 'tick',
-      colour: 'ginger',
-      tails: 0.5,
-      paws: 4,
-      loves: 'tuna',
-      hates: 'being awake'
-    }
-  ]
-}
-
 // routes
 
 server.get('/', function (req, res) {
@@ -51,7 +28,13 @@ server.get('/', function (req, res) {
 })
 
 server.get('/cats', function (req, res) {
-  res.render('index', data)
+  getJsonData((err, data) => {
+    if(err) {res.send('Error getting data.').status(500)}
+    else {
+      const cats = JSON.parse(data)
+      res.render('index', cats)
+    }
+  })
 })
 
 server.get('/cats/new', function (req, res) {
@@ -59,15 +42,27 @@ server.get('/cats/new', function (req, res) {
 })
 
 server.get('/cats/:id', function (req, res) {
-  console.log(req.params) // try going to /cats/1
-  const id = req.params.id
-  let cat = data.cats.find(function(element){
-    return element.id === parseInt(id)
+  const id = Number(req.params.id)
+  getJsonData((err, data) => {
+    if(err) {res.send('Error getting data.').status(500)}
+    else {
+      const cats = JSON.parse(data)
+      let cat = cats.cats.find(function(cat){
+        return cat.id === id
+      })
+      res.render('show', cat)
+    }
+    }) 
   })
-  res.render('show', cat)
-})
+  
+
+  
 
 server.post('/cats', function (req, res) {
+  const name = req.body.name
+  const image = req.body.image
+  const story = req.body.life-story
+
   console.log(req.body)
 })
 

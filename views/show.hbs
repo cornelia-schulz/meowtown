@@ -4,18 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>{{name}}</title>
 </head>
 <body>
-  <h1>{{name}}</h1>
+  <div class="container">
+    <h1>{{name}}</h1>
+  <img src="{{image}}" >
   <p>
-    Colour: {{colour}}
+    <span class="bold" >Colour: </span>{{colour}}
   </p>
   <p>
-    Loves: {{loves}}
+    <span class="bold" >Loves:</span> {{loves}}
   </p>
   <p>
-    Hates: {{hates}}
+    <span class="bold" >Hates:</span> {{hates}}
   </p>
+  <p>
+    <span class="bold" >Story:</span> {{story}}
+  </p>
+  </div>
 </body>
 </html>
