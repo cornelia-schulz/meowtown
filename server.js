@@ -6,7 +6,7 @@ const hbs = require('express-handlebars')
 const server = express()
 
 const getJsonData = require('./handleJSON').getDataFromJson
-const writeToJson = require('./handleJSON').writeToJson
+const writeToJson = require('./handleJSON').writeDataToJson
 
 // view engine config
 
@@ -65,7 +65,7 @@ server.post('/cats', function (req, res) {
   const colour = req.body.colour
   const loves = req.body.loves
   const hates = req.body.hates
-  const story = req.body.life-story
+  const story = req.body.story
   
   getJsonData((err, data) => {
     if(err) {res.send('Error getting data.').status(500)}
@@ -81,17 +81,15 @@ server.post('/cats', function (req, res) {
         image: image
       })
       const newCats = JSON.stringify(cats, null, 3)
-      writeToJson(newCats, writeToCats)
-        function writeToCats(err, data) {
+      writeToJson(newCats, ((err, data) => {
         if (err) {res.send('Error writing data.').status(500)}
         else 
         {
           res.redirect('/')
         }
-      }
+      }))
     }
   })
-  console.log(req.body)
 })
 
 module.exports = server
