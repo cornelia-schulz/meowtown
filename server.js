@@ -55,10 +55,9 @@ server.get('/cats/:id', function (req, res) {
     }
     }) 
   })
-  
+
 
   
-
 server.post('/cats', function (req, res) {
   const name = req.body.name
   const image = req.body.image
