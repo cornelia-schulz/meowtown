@@ -183,3 +183,8 @@ nav li {
 .catedit {
   clear: both;
 }
+
+.catedit .textarea {
+  width: 168px;
+  height: 175px
+}

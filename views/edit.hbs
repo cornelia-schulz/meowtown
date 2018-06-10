@@ -1,7 +1,7 @@
 <div id="container">
 
   <div class="title">
-    <h1>Cat Editor</h1>
+    <h1>Cat Editor bbb</h1>
   </div>
 
   <form class"catEdit" action="/cats/" accept-charset="UTF-8" method="post">
@@ -27,8 +27,10 @@
       <input value={{hates}} type="text" name="hates" />
     </div>
     <div class="catedit">
-      <label for="story">Life story:</label>
-      <textarea value={{story}} name="story"></textarea>
+      <label for="story">Story:</label>
+      <textarea class="textarea" name="story">
+        {{story}}
+      </textarea>
     </div>
     <div class="catedit">
       <input id="submit" type="submit" name="commit" value="Update Cat" />
