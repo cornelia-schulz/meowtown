@@ -174,3 +174,12 @@ nav li {
 .bold {
   font-weight: 600;
 }
+
+.catedit label {
+  display: inline-block;
+  width: 50px;
+}
+
+.catedit {
+  clear: both;
+}

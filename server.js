@@ -57,7 +57,6 @@ server.get('/cats/:id', function (req, res) {
   })
 
 
-  
 server.post('/cats', function (req, res) {
   const name = req.body.name
   const image = req.body.image
@@ -90,5 +89,19 @@ server.post('/cats', function (req, res) {
     }
   })
 })
+
+server.get('/cats/edit/:id', function (req, res) {
+  const id = Number(req.params.id)
+  getJsonData((err, data) => {
+    if(err) {res.send('Error getting data.').status(500)}
+    else {
+      const cats = JSON.parse(data)
+      let cat = cats.cats.find(function(cat){
+        return cat.id === id
+      })
+      res.render('edit', cat)
+    }
+    }) 
+  })
 
 module.exports = server

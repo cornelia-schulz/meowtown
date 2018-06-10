@@ -1,0 +1,45 @@
+<div id="container">
+
+  <div class="title">
+    <h1>Cat Editor</h1>
+  </div>
+
+  <form class"catEdit" action="/cats/" accept-charset="UTF-8" method="post">
+
+    <div class="catedit">
+      <label for="name">Name:</label>
+      <input value={{name}} type="text" name="name" />
+    </div>
+    <div class="catedit">
+      <label for="image">Image:</label>
+      <input value={{image}} type="text" name="image" />
+    </div>
+    <div class="catedit">
+      <label for="colour">Colour:</label>
+      <input value={{colour}} type="text" name="colour" />
+    </div>
+    <div class="catedit">
+      <label for="loves">Loves:</label>
+      <input value={{loves}} type="text" name="loves" />
+    </div>
+    <div class="catedit">
+      <label for="hates">Hates:</label>
+      <input value={{hates}} type="text" name="hates" />
+    </div>
+    <div class="catedit">
+      <label for="story">Life story:</label>
+      <textarea value={{story}} name="story"></textarea>
+    </div>
+    <div class="catedit">
+      <input id="submit" type="submit" name="commit" value="Update Cat" />
+    </div>
+
+  </form>
+
+  <div id="back">
+    <a href="/cats">nevermind</a>
+  </div>
+
+
+</div>
+<div id="meow"> </div>
