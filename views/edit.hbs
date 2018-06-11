@@ -4,7 +4,7 @@
     <h1>Cat Editor bbb</h1>
   </div>
 
-  <form class"catEdit" action="/cats/" accept-charset="UTF-8" method="post">
+  <form class"catEdit" action="/cats/edit/{{id}}" accept-charset="UTF-8" method="post">
 
     <div class="catedit">
       <label for="name">Name:</label>
@@ -39,7 +39,7 @@
   </form>
 
   <div id="back">
-    <a href="/cats">nevermind</a>
+    <a href="/cats/{{id}}">nevermind</a>
   </div>
 
 

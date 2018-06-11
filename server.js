@@ -96,34 +96,38 @@ server.get('/cats/edit/:id', function (req, res) {
       let cat = cats.cats.find(function(cat){
         return cat.id === id
       })
-      console.log(cat)
+      //console.log(cat)
       res.render('edit', cat)
     }
     }) 
   })
 
-  server.post('/cats/:id', function (req, res) {
+  server.post('/cats/edit/:id', function (req, res) {
+    const id = req.params.id
+    console.log(req.body)
     const editedCat = (req.body)
+    //console.log(editedCat)
     getJsonData((err, data) => {
       if(err) {
         res.send('Error reading data.').status(500)
       }
       else {
         const cats = JSON.parse(data)
-        cats[editedCat.id-1].name = editedCat.name
-        cats[editedCat.id-1].colour = editedCat.colour
-        cats[editedCat.id-1].story = editedCat.story
-        cats[editedCat.id-1].loves = editedCat.loves
-        cats[editedCat.id-1].hates = editedCat.hates
-        cats[editedCat.id-1].image = editedCat.image
-        console.log(cats)
-        writeToJson(cats, (err, data) => {
+        console.log(cats.cats)
+        cats.cats[id-1].name = editedCat.name
+        cats.cats[id-1].colour = editedCat.colour
+        cats.cats[id-1].story = editedCat.story
+        cats.cats[id-1].loves = editedCat.loves
+        cats.cats[id-1].hates = editedCat.hates
+        cats.cats[id-1].image = editedCat.image
+        updatedCats = JSON.stringify(cats, null, 3)
+        //console.log(updatedCats)
+        writeToJson(updatedCats, (err, data) => {
           if(err) {
             res.send('Error writing data.').status(500)
           }
           else {
-            console.log(data)
-            res.redirect('/cats/')
+            res.redirect('/cats/' + id)
           }
         })
       }
